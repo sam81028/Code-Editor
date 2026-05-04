@@ -651,11 +651,19 @@ label {
 
 .console-pane {
   min-width: 30%;
+  min-height: 0;
   display: grid;
-  grid-template-rows: minmax(190px, 0.75fr) auto minmax(220px, 0.85fr);
   gap: 12px;
   overflow-y: auto;
   padding-right: 2px;
+}
+
+.console-pane.without-preview {
+  grid-template-rows: minmax(190px, 0.62fr) minmax(280px, 1fr);
+}
+
+.console-pane.with-preview {
+  grid-template-rows: minmax(190px, 0.75fr) auto minmax(220px, 0.85fr);
 }
 
 .console-output,
@@ -718,12 +726,17 @@ label {
   padding: 12px;
 }
 
+.online-list,
+.chat-input {
+  flex: 0 0 auto;
+}
+
 .online-list small {
   color: var(--muted);
 }
 
 .chat-feed {
-  min-height: 80px;
+  min-height: 0;
   flex: 1;
   overflow-y: auto;
 }

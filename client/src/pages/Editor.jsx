@@ -897,7 +897,12 @@ function Editor() {
           type="button"
         />
 
-        <aside className="console-pane" style={{ flexBasis: `${100 - split}%` }}>
+        <aside
+          className={`console-pane ${
+            isWebProgram ? "with-preview" : "without-preview"
+          }`}
+          style={{ flexBasis: `${100 - split}%` }}
+        >
           <section className="console-output">
             <div className="console-heading">
               <div>
