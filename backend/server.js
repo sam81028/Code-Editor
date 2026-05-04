@@ -24,8 +24,6 @@ app.use(
 );
 app.use(express.json({ limit: "1mb" }));
 
-connectDB();
-
 app.get("/", (req, res) => {
   res.json({ status: "ok", service: "CodeRoom backend" });
 });
@@ -48,6 +46,17 @@ socketHandler(server);
 
 const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
+const startServer = async () => {
+  try {
+    await connectDB();
+
+    server.listen(PORT, () => {
+      console.log(`Server running on ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Server startup failed:", error.message);
+    process.exit(1);
+  }
+};
+
+startServer();
