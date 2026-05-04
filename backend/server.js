@@ -1,12 +1,13 @@
-const nodeCrypto = require("crypto");
+const { webcrypto } = require("crypto");
 const express = require("express");
 const http = require("http");
 const cors = require("cors");
 require("dotenv").config();
 
-if (!global.crypto) {
-  global.crypto = nodeCrypto;
-}
+Object.defineProperty(globalThis, "crypto", {
+  value: webcrypto,
+  configurable: true,
+});
 
 const connectDB = require("./src/config/db");
 const authRoutes = require("./src/routes/authRoutes");
